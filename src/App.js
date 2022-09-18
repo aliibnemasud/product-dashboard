@@ -6,9 +6,6 @@ import Home from './componants/Home';
 function App() {
   return (
     <div className="App">
-
-           
-
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/dashboard' element={<Dashboard />}></Route>
