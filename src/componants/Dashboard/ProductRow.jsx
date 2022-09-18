@@ -1,14 +1,16 @@
 import React from 'react';
 import { ShoppingBagIcon } from '@heroicons/react/24/solid';
 
-const ProductRow = () => {
+const ProductRow = ({product}) => {
+    const {name, image, size, color, stock, price } = product;
     return (
         <tr>
-            <th>Image</th>
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
-            <td>$35</td>
+            <th>{image}</th>
+            <td>{name}</td>
+            <td>{color}</td>
+            <td>{size}</td>
+            <td>{stock}</td>
+            <td>{price}</td>
             <td className='flex items-center'>
                 <input type="number" placeholder="Quantity" className="input input-bordered w-20" />
                 <button title='Add To Bag' className='btn btn-accent mx-2'><ShoppingBagIcon className="h-6 w-6  text-white" /></button>

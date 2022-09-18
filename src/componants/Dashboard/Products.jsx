@@ -1,7 +1,43 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import ProductRow from './ProductRow';
 
 const Products = () => {
+    const [products, setProducts] = useState([]);
+    const [sizefilter, setSizeFilter] = useState([]);
+    const [pdnameFilter, setPdNamefilter] = useState([]);    
+
+    useEffect(()=> {
+        axios.get('products.json')
+        .then(res => setProducts(res.data))
+    },[])
+
+    const sizeFilter = (e) => {
+        console.log(e.target.value)
+        const size = e.target.value;
+        const pdSize = products.filter(prodcut => prodcut.size === size)
+        setSizeFilter(pdSize)
+    }
+
+
+
+    let loadProducts;
+
+    if(sizefilter.length > 0){
+        loadProducts = sizefilter
+    }
+    else if (pdnameFilter.length > 0){
+        loadProducts = pdnameFilter
+    }
+    else {
+        loadProducts = products
+    }
+
+
+
+
+
+
     return (
         <div>
             <div className="searchbar flex justify-between">
@@ -11,10 +47,10 @@ const Products = () => {
                         <option>T-shirt</option>
                         <option>Pant</option>
                     </select>
-                    <select className="select select-bordered max-w-xs">
-                        <option selected>M</option>
-                        <option>XL</option>
-                        <option>XXL</option>
+                    <select className="select select-bordered max-w-xs" onChange={sizeFilter}>
+                        <option selected value="m">M</option>
+                        <option value="xl">XL</option>
+                        <option value="xxl">XXL</option>
                     </select>
                 </div>
                 <div className='flex mb-2'>
@@ -37,16 +73,16 @@ const Products = () => {
                             <th>Image</th>
                             <th>Name</th>
                             <th>Color</th>
+                            <th>Size</th>
                             <th>Stock</th>
                             <th>Price</th>
                             <th>Buy</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {/* <!-- row 1 --> */}
-                       
-                        <ProductRow/>
-
+                        {
+                            loadProducts && loadProducts.map(product => <ProductRow product={product}/>)
+                        }
                     </tbody>
                 </table>
             </div>
