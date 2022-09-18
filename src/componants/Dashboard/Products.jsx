@@ -7,11 +7,29 @@ const Products = () => {
     const [sizefilter, setSizeFilter] = useState([]);
     const [pdnameFilter, setPdNamefilter] = useState([]);    
     const [search, setSearch] = useState([]);    
+    const [isChecked, setIschecked] = useState([]);
+      
 
     useEffect(()=> {
         axios.get('products.json')
         .then(res => setProducts(res.data))
     },[])
+
+    // handleCart
+    const handleAddCart = async () => {
+        console.log(isChecked)
+    }
+    
+    const handleCheckBox = (e) => {
+        const { value, checked } = e.target;
+
+        if (checked) {
+            setIschecked([...isChecked, value])
+        }
+        else {
+            setIschecked(isChecked.filter((e) => e!== value))
+        }
+    }
 
     // Filter by size
     const sizeFilter = (e) => {        
@@ -20,7 +38,9 @@ const Products = () => {
         setSizeFilter(pdSize)
         setPdNamefilter(0)
     }
+
     // Filter By Product Name
+    
     const filterByName = (e) => {        
         const pdType = e.target.value;
         const result = products.filter(product => product.pdtype === pdType)
@@ -76,7 +96,7 @@ const Products = () => {
                             <input onChange={searchResult} type="text" placeholder="Search…" className="input input-bordered" />                           
                         </div>
                     </div>
-                    <button className='btn btn-primary'>Add To Cart</button>
+                    <button className='btn btn-primary' onClick={handleAddCart}>Add To Cart</button>
                 </div>
             </div>
             <div className="overflow-x-auto">
@@ -95,7 +115,7 @@ const Products = () => {
                     </thead>
                     <tbody>
                         {
-                            loadProducts && loadProducts.map(product => <ProductRow product={product}/>)
+                            loadProducts && loadProducts.map(product => <ProductRow product={product} isChecked={isChecked} setIschecked={setIschecked} handleCheckBox={handleCheckBox} key={product?._id} />)
                         }
                     </tbody>
                 </table>

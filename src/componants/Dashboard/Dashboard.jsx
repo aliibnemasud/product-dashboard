@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Products from './Products';
 
 const Dashboard = () => {
@@ -17,9 +18,8 @@ const Dashboard = () => {
                     <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content bg-slate-800">
                         {/* <!-- Sidebar content here --> */}
                         <li className='bg-slate-500 mb-2'><a className=' text-white'>Products</a></li>
-                        <li className='bg-slate-500 mb-2'><a className=' text-white'> Cart</a></li>
+                        <li className='bg-slate-500 mb-2'><Link to="/cart">Cart</Link></li>
                         <li className='bg-slate-500 mb-2'><a className=' text-white'>Products</a></li>
-
                     </ul>
 
                 </div>
