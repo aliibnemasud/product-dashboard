@@ -38,6 +38,7 @@ const Products = () => {
     // handleCart
     const handleAddCart = async () => {
         console.log(isChecked)
+        alert("All Product id added on arrary", isChecked)
     }
 
     const handleCheckBox = (e) => {
@@ -119,7 +120,7 @@ const Products = () => {
                             <input onChange={searchResult} type="text" placeholder="Search…" className="input input-bordered" />
                         </div>
                     </div>
-                    <button className='btn btn-primary' onClick={handleAddCart}>Add To Cart</button>
+                    <button className='btn btn-primary' disabled={isChecked.length < 1} onClick={handleAddCart}>Add To Cart</button>
 
                 </div>
             </div>
