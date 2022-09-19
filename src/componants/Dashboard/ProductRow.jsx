@@ -2,7 +2,8 @@ import { ShoppingBagIcon } from '@heroicons/react/24/solid';
 
 const ProductRow = ({ product, handleCheckBox }) => {
 
-    const { name, image, size, color, stock, price, _id } = product;   
+    const { name, image, size, color, stock, price, _id } = product;
+      
 
     return (
         

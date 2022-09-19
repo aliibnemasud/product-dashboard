@@ -5,8 +5,8 @@ const Cart = () => {
     return (
         <div >
             <h1 className='text-center text-3xl my-4'>Cart Page</h1>
-            <div className="grid">
-                <div className="overflow-x-auto">
+            <div className="flex p-10">
+                <div className="overflow-x-auto flex-initial w-3/4">
                     <table className="table w-full">
                         {/* <!-- head --> */}
                         <thead>
@@ -28,13 +28,18 @@ const Cart = () => {
                         </tbody>
                     </table>
                 </div>
-                <div >
+                <div className='flex-initial w-1/4 p-5 bg-slate-200 mx-3 rounded-md'>
                     <h2 className='text-3xl'>Cart Total</h2>
                     <div className='flex justify-between my-4' >
                         <h5 className='text-2xl'>Subtotal: </h5>
                         <h5 className='text-2xl'>$ 50</h5>
                     </div>
-                    <button className='btn btn-primary'>Proceed To Checkout</button>
+                    <div className="divider"></div>
+                    <div className='flex justify-between my-4' >
+                        <h5 className='text-2xl'>Total: </h5>
+                        <h5 className='text-2xl'>$ 50</h5>
+                    </div>
+                    <button className='btn btn-primary w-full'>Proceed To Checkout</button>
                 </div>
             </div>
         </div>
