@@ -21,9 +21,10 @@ const Cartrow = ({ product}) => {
             <tr>
                 <th>{product?.image}</th>
                 <td>{product?.name}</td>
-                <td>{product?.size}</td>
                 <td>{product?.color}</td>
-                <td>{product?.stock ? "Out Of Stock" : "In Stock"}</td>
+                <td>{product?.size}</td>
+                <td>{product?.stock ? "In Stock" : "Out Of Stock"}</td>
+                <td>{product?.price}</td>
                 <td>
                     <div className="form-control">
                         <div className="input-group">
@@ -37,9 +38,8 @@ const Cartrow = ({ product}) => {
                         </div>
                     </div>
                 </td>
-                <td>Blue</td>
+                
                 <td>{(quantity * parseFloat(product?.price)).toFixed(2) }</td>
-
             </tr>
       
     );

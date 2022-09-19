@@ -26,14 +26,7 @@ const Products = () => {
 
     if(isLoading){
         return <h1 className='text-center pt-20'>Loading...</h1>
-    }
-
-   /*  useEffect(() => {
-        axios.get('products.json')
-            .then(res => setProducts(res.data))
-    }, [])
- */
-    
+    }    
 
     const addCart = (product) => {
         const cartItems = [...cart, product];
@@ -120,7 +113,7 @@ const Products = () => {
 
                 <div className='flex mb-2'>
                     <button ></button>
-                    <Link cart={cart} to="/cart" className='btn btn-secondary mr-2'>Cart ({cart?.length})</Link>
+                    <Link cart={cart} to="cart" className='btn btn-secondary mr-2'>Cart ({cart?.length})</Link>
                     <div className="form-control mr-2">
                         <div className="input-group">
                             <input onChange={searchResult} type="text" placeholder="Search…" className="input input-bordered" />

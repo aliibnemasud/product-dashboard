@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Cart from './componants/Cart/Cart';
 import Dashboard from './componants/Dashboard/Dashboard';
+import Products from './componants/Dashboard/Products';
 import Home from './componants/Home';
 
 function App() {
@@ -9,8 +10,11 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={<Home/>}></Route>
-        <Route path='/cart' element={<Cart/>}></Route>
-        <Route path='/dashboard' element={<Dashboard />}></Route>
+        
+        <Route path='/dashboard' element={<Dashboard />}>
+          <Route index element={<Products/>}></Route>
+          <Route path='cart' element={<Cart/>}></Route>
+        </Route>
       </Routes>
     </div>
   );

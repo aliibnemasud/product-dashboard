@@ -3,14 +3,22 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Cartrow from './Cartrow';
 
-const Cart = () => {  
-    const {cart, isLoading, error} = useSelector(state => state.cart);   
+const Cart = () => {
+    const { cart, isLoading, error } = useSelector(state => state.cart);
+
+    let total = 0;
+
+    cart.map(product => {
+        total = total + parseFloat(product.price)
+    })
 
     return (
-        <div >
-            <Link to="/dashboard" className='btn btn-primary'>Dashboard</Link>
-            <h1 className='text-center text-3xl my-4'>Cart Page</h1>
-            <div className="flex p-10">
+        <div>
+            <div className='flex justify-between items-center mb-3'>
+                <Link to="/dashboard" className='btn btn-primary mr-5'>Dashboard</Link>
+                <h1 className='text-center text-3xl'>Cart Page</h1>
+            </div>
+            <div className="flex">
                 <div className="overflow-x-auto flex-initial w-3/4">
                     <table className="table w-full">
                         {/* <!-- head --> */}
@@ -21,17 +29,17 @@ const Cart = () => {
                                 <th>Color</th>
                                 <th>Size</th>
                                 <th>Stock</th>
+                                <th>Price</th>
                                 <th>Quantity</th>
-                                <th>Price</th>                                
                                 <th>Subtotal</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                cart && cart.map(product => <Cartrow 
-                                    product= {product}
-                                    />)
-                            }                            
+                                cart && cart.map(product => <Cartrow
+                                    product={product}
+                                />)
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -43,7 +51,7 @@ const Cart = () => {
                     </div>
                     <div className="divider"></div>
                     <div className='flex justify-between my-4' >
-                        <h5 className='text-2xl'>Total: </h5>
+                        <h5 className='text-2xl'>Total: $ {total.toFixed(2)} </h5>
                         <h5 className='text-2xl'>$ 50</h5>
                     </div>
                     <button className='btn btn-primary w-full'>Proceed To Checkout</button>
